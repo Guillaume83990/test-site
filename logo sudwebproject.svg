@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <!-- Gradients Premium -->
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E293B;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Filtres pour effets premium -->
+    <filter id="subtleShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.15"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Hexagone tech avec effet de profondeur -->
+  <g filter="url(#subtleShadow)">
+    <path d="M 200 40 L 250 65 L 250 115 L 200 140 L 150 115 L 150 65 Z" 
+          fill="none" stroke="url(#accentGradient)" stroke-width="3"/>
+    <path d="M 200 50 L 240 70 L 240 110 L 200 130 L 160 110 L 160 70 Z" 
+          fill="white" stroke="url(#primaryGradient)" stroke-width="2"/>
+  </g>
+  
+  <!-- Code symbol moderne centré -->
+  <text x="200" y="105" font-family="'JetBrains Mono', 'Courier New', monospace" 
+        font-size="32" font-weight="700" text-anchor="middle" fill="url(#accentGradient)">&lt;/&gt;</text>
+  
+  <!-- Texte principal premium -->
+  <text x="200" y="210" font-family="'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif" 
+        font-size="62" font-weight="800" text-anchor="middle" fill="#0F172A" letter-spacing="-1">SUD WEB</text>
+  <text x="200" y="260" font-family="'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif" 
+        font-size="28" font-weight="300" text-anchor="middle" fill="url(#accentGradient)" letter-spacing="10">PROJECT</text>
+  
+  <!-- Ligne de séparation élégante -->
+  <line x1="80" y1="280" x2="320" y2="280" stroke="url(#accentGradient)" stroke-width="1.5" opacity="0.3"/>
+  
+  <!-- Tagline sophistiqué -->
+  <text x="200" y="310" font-family="'SF Pro Text', -apple-system, 'Helvetica', sans-serif" 
+        font-size="14" text-anchor="middle" fill="#64748B" letter-spacing="2">WEB DEVELOPMENT • SAINT-TROPEZ</text>
+</svg>

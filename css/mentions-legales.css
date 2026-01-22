@@ -1,0 +1,367 @@
+/* ==========================================
+   MENTIONS LÉGALES - CSS
+   ========================================== */
+
+/* Variables */
+:root {
+    --blue-400: #60A5FA;
+    --blue-500: #3B82F6;
+    --blue-600: #2563EB;
+    --slate-300: #CBD5E1;
+    --slate-400: #94A3B8;
+    --slate-500: #64748B;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background: #0F172A;
+    color: var(--slate-300);
+    line-height: 1.7;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: white;
+}
+
+.logo-hex {
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.logo-accent {
+    color: var(--blue-400);
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--blue-400);
+    border: 2px solid var(--blue-400);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: rgba(59, 130, 246, 0.2);
+    transform: translateX(-3px);
+}
+
+/* Main content */
+.legal-main {
+    padding-top: 100px;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+}
+
+/* Header */
+.legal-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.legal-header h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.legal-subtitle {
+    font-size: 1.2rem;
+    color: var(--slate-400);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.legal-date {
+    color: var(--slate-500);
+    font-size: 0.95rem;
+}
+
+/* Navigation sections */
+.legal-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: rgba(30, 41, 59, 0.4);
+    border-radius: 15px;
+    border: 2px solid rgba(59, 130, 246, 0.2);
+}
+
+.legal-nav-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--blue-400);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.legal-nav-link:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: var(--blue-400);
+    transform: translateY(-2px);
+}
+
+/* Sections */
+.legal-section {
+    margin-bottom: 5rem;
+    scroll-margin-top: 100px;
+}
+
+.legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--blue-400);
+}
+
+/* Blocs de contenu */
+.legal-block {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(59, 130, 246, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.legal-block h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.legal-block p {
+    color: var(--slate-300);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.legal-block p:last-child {
+    margin-bottom: 0;
+}
+
+.legal-block ul {
+    list-style: none;
+    margin: 1rem 0;
+    padding-left: 0;
+}
+
+.legal-block ul li {
+    color: var(--slate-300);
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.legal-block ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--blue-400);
+    font-weight: 700;
+}
+
+.legal-block strong {
+    color: white;
+}
+
+.legal-block a {
+    color: var(--blue-400);
+    text-decoration: underline;
+}
+
+.legal-block a:hover {
+    color: var(--blue-300);
+}
+
+/* CTA Contact */
+.legal-cta {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 20px;
+    margin-top: 4rem;
+}
+
+.legal-cta h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.legal-cta p {
+    color: var(--slate-300);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 2.5rem;
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Footer */
+.legal-footer {
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.legal-footer p {
+    color: var(--slate-400);
+    margin: 0.5rem 0;
+}
+
+.legal-footer a {
+    color: var(--blue-400);
+    text-decoration: none;
+}
+
+.legal-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .nav-container {
+        padding: 1rem;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .btn-back span {
+        display: none;
+    }
+
+    .legal-main {
+        padding-top: 80px;
+    }
+
+    .legal-header h1 {
+        font-size: 2rem;
+    }
+
+    .legal-subtitle {
+        font-size: 1rem;
+    }
+
+    .legal-nav {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    .legal-nav-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .legal-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .legal-block {
+        padding: 1.5rem;
+    }
+
+    .legal-block h3 {
+        font-size: 1.25rem;
+    }
+
+    .legal-cta {
+        padding: 2rem 1rem;
+    }
+
+    .legal-cta h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn-primary {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}

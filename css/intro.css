@@ -1,0 +1,343 @@
+/* ================================================
+   INTRO.CSS - Page d'introduction spectaculaire
+   Animation de particules formant le logo hexagonal
+   ================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0e1a;
+}
+
+/* ============= CONTENEUR PRINCIPAL ============= */
+#intro-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at center, #1a1f35 0%, #0a0e1a 100%);
+}
+
+/* ============= CANVAS ============= */
+#particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* ============= OVERLAY ============= */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(10, 14, 26, 0.3) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ============= CONTENU ============= */
+#content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+#content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#content.hidden {
+    display: none;
+}
+
+/* ============= LOGO HEXAGONAL ============= */
+.logo-hexagon {
+    margin: 0 auto 1.5rem;
+    width: 80px;
+    height: 80px;
+    animation: logoAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes logoAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-180deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* ============= TEXTES ============= */
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(59, 130, 246, 0.6),
+        0 0 80px rgba(59, 130, 246, 0.4);
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+            0 0 40px rgba(59, 130, 246, 0.6),
+            0 0 80px rgba(59, 130, 246, 0.4);
+    }
+
+    50% {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+            0 0 60px rgba(59, 130, 246, 0.8),
+            0 0 120px rgba(59, 130, 246, 0.6);
+    }
+}
+
+.location {
+    font-size: 2rem;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.tagline {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ============= BOUTON ENTRER ============= */
+.enter-button {
+    padding: 1.2rem 3rem;
+    background: transparent;
+    border: 2px solid #3B82F6;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-transform: uppercase;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.enter-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.enter-button:hover::before {
+    left: 100%;
+}
+
+.enter-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #3B82F6;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -2;
+}
+
+.enter-button:hover::after {
+    width: 100%;
+}
+
+.enter-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(59, 130, 246, 0.6),
+        0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.enter-button:active {
+    transform: translateY(-1px);
+}
+
+.enter-button svg {
+    transition: transform 0.3s ease;
+}
+
+.enter-button:hover svg {
+    transform: translateX(5px);
+}
+
+/* ============= LOADING ============= */
+.loading-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.loading-text.hidden {
+    display: none;
+}
+
+.loading-dot {
+    width: 12px;
+    height: 12px;
+    background: #3B82F6;
+    border-radius: 50%;
+    animation: loadingPulse 1.4s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes loadingPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+}
+
+/* ============= RESPONSIVE ============= */
+@media (max-width: 768px) {
+    .brand-name {
+        font-size: 3rem;
+    }
+
+    .location {
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+
+    .logo-hexagon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .enter-button {
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-name {
+        font-size: 2.2rem;
+    }
+
+    .location {
+        font-size: 1.2rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .logo-hexagon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
+    }
+
+    .enter-button {
+        padding: 0.9rem 2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ============= ACCESSIBILITÉ ============= */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.enter-button:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 4px;
+}
+
+/* ============= TRANSITION DE SORTIE ============= */
+#intro-container.fade-out {
+    animation: fadeOut 0.8s ease forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+}

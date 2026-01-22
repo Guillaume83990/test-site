@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>404 - Page non trouvée | Sud Web Project</title>
+    <meta name="description" content="La page que vous recherchez n'existe pas ou a été déplacée.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon-sudwebproject.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/404.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="error-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <svg class="logo-hex" viewBox="0 0 50 50" width="48" height="48">
+                <polygon points="25,2.5 45,13.75 45,36.25 25,47.5 5,36.25 5,13.75" fill="url(#grad404)" stroke="#3B82F6"
+                    stroke-width="1.5" />
+                <defs>
+                    <linearGradient id="grad404" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <text x="25" y="31" text-anchor="middle" fill="white" font-size="16" font-family="monospace"
+                    font-weight="bold">&lt;/&gt;</text>
+            </svg>
+        </div>
+
+        <!-- Contenu erreur -->
+        <div class="error-content">
+
+            <!-- Numéro 404 animé -->
+            <div class="error-code">
+                <span class="glitch" data-text="404">404</span>
+            </div>
+
+            <!-- Message -->
+            <h1>Page non trouvée</h1>
+            <p class="error-message">
+                Oups ! La page que vous recherchez n'existe pas ou a été déplacée.
+            </p>
+
+            <!-- Suggestions -->
+            <div class="suggestions">
+                <p class="suggestions-title">Que souhaitez-vous faire ?</p>
+                <div class="suggestions-links">
+                    <a href="index.html" class="suggestion-link">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        <span>Retour à l'accueil</span>
+                    </a>
+
+                    <a href="index.html#services" class="suggestion-link">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>Voir les services</span>
+                    </a>
+
+                    <a href="index.html#contact" class="suggestion-link">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>Me contacter</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Message humoristique -->
+            <p class="error-joke">
+                💡 <em>Cette page est aussi introuvable qu'un bug dans un code parfait...</em>
+            </p>
+
+        </div>
+
+        <!-- Animation particules en arrière-plan -->
+        <canvas id="particles-404"></canvas>
+
+    </div>
+
+    <!-- Script particules -->
+    <script>
+        // Animation particules simple
+        const canvas = document.getElementById('particles-404');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const particles = [];
+        const particleCount = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+
+</body>
+
+</html>
