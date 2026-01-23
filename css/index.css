@@ -3,6 +3,13 @@
    Tout-en-un pour page unique
    ================================================ */
 
+/* ============= SMOOTH SCROLL ============= */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+    /* Hauteur du header + marge */
+}
+
 /* ============= VARIABLES CSS ============= */
 :root {
     --slate-950: #020617;
@@ -2633,6 +2640,28 @@ body {
     .btn {
         padding: 0.875rem 1.5rem;
         font-size: 0.95rem;
+    }
+
+    /* Formulaire de contact responsive */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .contact-form h3 {
+        font-size: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px;
+        /* Évite le zoom automatique sur iOS */
     }
 }
 

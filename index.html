@@ -75,6 +75,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/cookies.css">
+    <link rel="stylesheet" href="css/portfolio-demo.css">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,7 +111,7 @@
             <ul class="nav-links" id="nav-menu">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#apropos">À propos</a></li>
-                <li><a href="#portfolio">Réalisations</a></li>
+                <li><a href="#complementaires">Réalisations</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
@@ -547,10 +548,8 @@
                 </article>
             </div>
 
-
-
             <!-- ===== SECTION RÉALISATIONS / PORTFOLIO ===== -->
-            <section id="portfolio" class="portfolio">
+            <section class="portfolio">
                 <div class="container">
                     <div class="section-header" data-scroll>
                         <span class="section-badge">
@@ -564,23 +563,93 @@
                         </p>
                     </div>
 
-                    <!-- Message temporaire en attendant les vrais projets -->
-                    <div class="portfolio-empty" data-scroll>
-                        <div class="empty-icon">🚀</div>
-                        <h3>Portfolio en construction</h3>
-                        <p>Mes premiers projets sont actuellement en cours de réalisation avec des entreprises locales
-                            du Var.</p>
-                        <p class="empty-note">
-                            Vous souhaitez être parmi mes premiers clients et bénéficier d'une
-                            <strong>offre de lancement avantageuse</strong> ? Contactez-moi dès maintenant !
-                        </p>
-                        <a href="#contact" class="btn btn-primary">
-                            <span>Être client pionnier</span>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </a>
+                    <!-- Portfolio avec projet déménagement -->
+                    <div class="portfolio-demo" id="portfolio" data-scroll>
+                        <div class="demo-intro">
+                            <h3>Exemple de réalisation</h3>
+                            <p class="demo-subtitle">
+                                Projet de démonstration – Site complet de déménagement
+                            </p>
+                            <p class="demo-description">
+                                Design sur mesure avec fonctionnalités avancées :
+                                <strong>chatbot IA</strong>, <strong>traduction multilingue</strong>,
+                                <strong>badge avis Google</strong>, <strong>boutique en ligne</strong>
+                                et <strong>design 100% responsive</strong>.
+                            </p>
+                        </div>
+
+                        <!-- Grille des 3 captures d'écran -->
+                        <div class="portfolio-screenshots">
+
+                            <!-- Image 1 - Page d'accueil -->
+                            <div class="screenshot-card">
+                                <div class="screenshot-image">
+                                    <img src="assets/images/Capture d'écran page accueil demenageur.png"
+                                        alt="Page d'accueil site déménagement" loading="lazy">
+                                </div>
+                                <div class="screenshot-info">
+                                    <h4>📱 Page d'accueil complète</h4>
+                                    <ul class="features-list">
+                                        <li>✅ Header professionnel avec navigation</li>
+                                        <li>✅ Hero impactant avec call-to-action</li>
+                                        <li>✅ Badge avis clients Google</li>
+                                        <li>✅ Chatbot IA pour assistance 24/7</li>
+                                        <li>✅ Traduction multilingue (FR/EN)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Image 2 - Page boutique -->
+                            <div class="screenshot-card">
+                                <div class="screenshot-image">
+                                    <img src="assets/images/Capture d'écran boutique produits.png"
+                                        alt="Page boutique site déménagement" loading="lazy">
+                                </div>
+                                <div class="screenshot-info">
+                                    <h4>🛒 Boutique en ligne</h4>
+                                    <ul class="features-list">
+                                        <li>✅ Catalogue produits avec filtres avancés</li>
+                                        <li>✅ Système de recherche intuitif</li>
+                                        <li>✅ Panier d'achat dynamique</li>
+                                        <li>✅ Fiches produits détaillées</li>
+                                        <li>✅ Processus de commande simplifié</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Image 3 - Responsive mobile -->
+                            <div class="screenshot-card">
+                                <div class="screenshot-image">
+                                    <img src="assets/images/Capture d'écran responsive.png"
+                                        alt="Version mobile responsive" loading="lazy">
+                                </div>
+                                <div class="screenshot-info">
+                                    <h4>📲 Design 100% responsive</h4>
+                                    <ul class="features-list">
+                                        <li>✅ Optimisé pour mobile et tablette</li>
+                                        <li>✅ Navigation adaptative tactile</li>
+                                        <li>✅ Chargement rapide sur mobile</li>
+                                        <li>✅ Menu burger intuitif</li>
+                                        <li>✅ Expérience utilisateur optimale</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Call-to-action -->
+                        <div class="demo-cta">
+                            <p class="cta-text">
+                                Envie d'un site aussi complet pour votre entreprise ?
+                            </p>
+                            <a href="#contact" class="btn btn-primary btn-large">
+                                <span>Obtenir un devis gratuit</span>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -1049,7 +1118,7 @@
                     <ul>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#apropos">À propos</a></li>
-                        <li><a href="#portfolio">Réalisations</a></li>
+                        <li><a href="#complementaires">Réalisations</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -1138,41 +1207,35 @@
                 </div>
             </div>
         </div>
-
         <!-- Bouton retour en haut -->
         <button id="back-to-top" class="back-to-top" aria-label="Retour en haut">
-            <svg width="20" height="20" viewBox="0 0 20 20 fill=" none" stroke="currentColor">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l5-5m0 0l5 5m-5-5v10" />
             </svg>
         </button>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="js/index.js"></script>
-</body>
-
-</html>
-
-<!-- Bannière Cookies (RGPD) -->
-<div class="cookie-banner">
-    <div class="cookie-banner-content">
-        <div class="cookie-text">
-            <h3>🍪 Nous utilisons des cookies</h3>
-            <p>
-                Ce site utilise des cookies pour améliorer votre expérience de navigation.
-                En cliquant sur "Accepter", vous acceptez l'utilisation de cookies analytiques.
-                <a href="mentions-legales.html#cookies">En savoir plus</a>
-            </p>
-        </div>
-        <div class="cookie-buttons">
-            <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Accepter</button>
-            <button id="cookie-refuse" class="cookie-btn cookie-btn-refuse">Refuser</button>
+    <!-- Bannière Cookies (RGPD) -->
+    <div class="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="cookie-text">
+                <h3>🍪 Nous utilisons des cookies</h3>
+                <p>
+                    Ce site utilise des cookies pour améliorer votre expérience de navigation.
+                    En cliquant sur "Accepter", vous acceptez l'utilisation de cookies analytiques.
+                    <a href="mentions-legales.html#cookies">En savoir plus</a>
+                </p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Accepter</button>
+                <button id="cookie-refuse" class="cookie-btn cookie-btn-refuse">Refuser</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Script Cookies -->
-<script src="js/cookies.js"></script>
+    <!-- JavaScript -->
+    <script src="js/index-new.js"></script>
+    <script src="js/cookies.js"></script>
 </body>
 
 </html>

@@ -3,8 +3,6 @@
    Navigation + Animations + Particules + Formulaire
    ================================================ */
 
-'use strict';
-
 // ============= NAVIGATION MOBILE ============= //
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
@@ -246,16 +244,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(href);
         if (target) {
             e.preventDefault();
-            const offsetTop = target.offsetTop - 80;
+            console.log('Scrolling to:', href, 'Target found:', target);
 
+            // Offset réduit pour arriver pile sur la section
+            const offsetTop = target.offsetTop - 100;
+
+            // Scroll vers la section
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
+
+            // Highlight temporaire pour confirmer qu'on est bien sur la bonne section
+            target.style.transition = 'background 0.3s';
+            const originalBg = target.style.background;
+            target.style.background = 'rgba(59, 130, 246, 0.05)';
+            setTimeout(() => {
+                target.style.background = originalBg;
+            }, 1000);
+        } else {
+            console.log('Target NOT found for:', href);
         }
     });
 });
-
 
 // ============= ANIMATION COMPTEURS ============= //
 const animateCounter = (element, target, duration = 2000) => {
