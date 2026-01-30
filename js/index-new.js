@@ -474,3 +474,53 @@ console.log(
     '%c📧 contact@sudwebproject.fr',
     'color: #10B981; font-size: 14px;'
 );
+
+// ============= GOOGLE TRANSLATE - BOUTONS CUSTOM ============= //
+(function () {
+    'use strict';
+
+    let attempts = 0;
+    const maxAttempts = 20;
+
+    function initCustomButtons() {
+        attempts++;
+
+        const select = document.querySelector('.goog-te-combo');
+
+        if (select) {
+            console.log('✅ Traduction prête !');
+
+            const langButtons = document.querySelectorAll('.lang-btn');
+
+            langButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const targetLang = this.getAttribute('data-lang');
+
+                    // Changer la langue
+                    select.value = targetLang;
+                    select.dispatchEvent(new Event('change'));
+
+                    // Activer visuellement
+                    langButtons.forEach(function (b) {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    console.log('🌍 Langue:', targetLang);
+                });
+            });
+
+        } else if (attempts < maxAttempts) {
+            setTimeout(initCustomButtons, 500);
+        }
+    }
+
+    // Démarrer après chargement
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(initCustomButtons, 1000);
+        });
+    } else {
+        setTimeout(initCustomButtons, 1000);
+    }
+})();

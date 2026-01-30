@@ -126,6 +126,7 @@ section {
     transition: padding 0.3s ease;
 }
 
+
 .nav.scrolled .nav-container {
     padding: 0.875rem 2rem;
 }
@@ -169,9 +170,14 @@ section {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
+    /* Réduit de 3rem à 2rem */
     list-style: none;
     margin: 0;
+    margin-left: auto;
+    /* AJOUTÉ - Pousse le menu à droite */
+    margin-right: 2rem;
+    /* AJOUTÉ - Espace avant le bouton CTA */
     padding: 0;
 }
 
@@ -221,6 +227,8 @@ section {
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    flex-shrink: 0;
+    /* AJOUTÉ - Empêche le bouton de rétrécir */
 }
 
 .nav-cta::before {
@@ -2685,4 +2693,72 @@ body {
 
 .whatsapp-link svg {
     color: #25D366;
+}
+
+/* ============= GOOGLE TRANSLATE AVEC BOUTONS ============= */
+
+/* Container */
+.translate-container {
+    margin-left: 1rem;
+    /* Petit espace après le logo */
+    margin-right: auto;
+    /* Pousse le menu à droite */
+    position: relative;
+}
+
+/* Cacher le widget Google original */
+.translate-hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Boutons personnalisés */
+.language-switcher {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 50px;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.lang-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+/* Cacher le bandeau Google */
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .translate-container {
+        margin: 10px 0;
+    }
 }
