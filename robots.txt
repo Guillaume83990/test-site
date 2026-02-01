@@ -1,0 +1,21 @@
+# robots.txt - Sud Web Project
+# https://sudwebproject.fr
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sudwebproject.fr/sitemap.xml
+
+# Bloquer les fichiers inutiles
+Disallow: /css/
+Disallow: /js/
+Disallow: /*.css$
+Disallow: /*.js$
+
+# Pages à ne pas indexer
+Disallow: /404.html
+Disallow: /*?*
+
+# Autoriser les images
+Allow: /assets/images/
