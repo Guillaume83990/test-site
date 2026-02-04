@@ -1,6 +1,6 @@
 /* ================================================
    INDEX.JS - JavaScript complet (tout-en-un)
-   Navigation + Animations + Particules + Formulaire
+   Navigation + Animations + Particules
    ================================================ */
 
 // ============= NAVIGATION MOBILE ============= //
@@ -10,10 +10,8 @@ const navOverlay = document.getElementById('nav-overlay');
 const nav = document.getElementById('main-nav');
 
 if (navToggle && navMenu && navOverlay) {
-    // Toggle menu mobile
     navToggle.addEventListener('click', () => {
         const isActive = navMenu.classList.contains('active');
-
         if (isActive) {
             closeMenu();
         } else {
@@ -35,15 +33,12 @@ if (navToggle && navMenu && navOverlay) {
         document.body.style.overflow = '';
     }
 
-    // Fermer au clic sur overlay
     navOverlay.addEventListener('click', closeMenu);
 
-    // Fermer au clic sur lien
     navMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeMenu);
     });
 
-    // Fermer avec Échap
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && navMenu.classList.contains('active')) {
             closeMenu();
@@ -67,13 +62,11 @@ window.addEventListener('scroll', () => {
 
 function handleNavScroll() {
     const currentScroll = window.pageYOffset;
-
     if (currentScroll > 100) {
         nav.classList.add('scrolled');
     } else {
         nav.classList.remove('scrolled');
     }
-
     lastScroll = currentScroll;
 }
 
@@ -103,7 +96,6 @@ class BackgroundParticle {
     update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
         if (this.x < 0 || this.x > width) this.speedX *= -1;
         if (this.y < 0 || this.y > height) this.speedY *= -1;
     }
@@ -286,7 +278,6 @@ window.addEventListener('scroll', () => {
 
 function handleBackToTop() {
     const scrollPosition = window.pageYOffset;
-
     if (scrollPosition > 400) {
         backToTopBtn.classList.add('visible');
     } else {
@@ -309,121 +300,6 @@ const currentYearSpan = document.getElementById('current-year');
 if (currentYearSpan) {
     currentYearSpan.textContent = new Date().getFullYear();
 }
-
-
-// ============= FORMULAIRE CONTACT ============= //
-const contactForm = document.getElementById('contact-form');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            city: document.getElementById('city').value,
-            service: document.getElementById('service').value,
-            message: document.getElementById('message').value
-        };
-
-        if (!validateEmail(formData.email)) {
-            showNotification('❌ Veuillez entrer une adresse email valide.', 'error');
-            return;
-        }
-
-        const submitBtn = this.querySelector('.submit-btn');
-        const originalHTML = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Envoi en cours...</span>';
-
-        try {
-            // ICI : Intégrer EmailJS, FormSpree, ou votre API
-            // Exemple EmailJS:
-            // await emailjs.send('service_id', 'template_id', formData);
-
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            showNotification('✅ Merci ! Je vous recontacte sous 24h maximum.', 'success');
-            contactForm.reset();
-
-        } catch (error) {
-            showNotification('❌ Erreur. Contactez-moi directement : contact@sudwebproject.fr', 'error');
-            console.error('Erreur:', error);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalHTML;
-        }
-    });
-}
-
-function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-const emailInput = document.getElementById('email');
-if (emailInput) {
-    emailInput.addEventListener('blur', function () {
-        if (this.value && !validateEmail(this.value)) {
-            this.style.borderColor = '#EF4444';
-        } else {
-            this.style.borderColor = '';
-        }
-    });
-}
-
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 2rem;
-        background: ${type === 'success' ? 'rgba(16, 185, 129, 0.9)' : 'rgba(239, 68, 68, 0.9)'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        z-index: 10000;
-        animation: slideInRight 0.3s ease;
-        backdrop-filter: blur(10px);
-        font-weight: 600;
-    `;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 5000);
-}
-
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
 
 
 // ============= CURSOR GLOW (optionnel) ============= //
@@ -462,18 +338,9 @@ if (window.innerWidth > 1024) {
 
 
 // ============= CONSOLE ============= //
-console.log(
-    '%c🌴 Sud Web Project - Saint-Tropez',
-    'color: #3B82F6; font-size: 20px; font-weight: bold;'
-);
-console.log(
-    '%c✨ Animations luxe activées',
-    'color: #60A5FA; font-size: 14px;'
-);
-console.log(
-    '%c📧 contact@sudwebproject.fr',
-    'color: #10B981; font-size: 14px;'
-);
+console.log('%c🌴 Sud Web Project - Saint-Tropez', 'color: #3B82F6; font-size: 20px; font-weight: bold;');
+console.log('%c✨ Animations luxe activées', 'color: #60A5FA; font-size: 14px;');
+console.log('%c📧 contact@sudwebproject.com', 'color: #10B981; font-size: 14px;');
 
 // ============= GOOGLE TRANSLATE - BOUTONS CUSTOM ============= //
 (function () {
@@ -495,12 +362,9 @@ console.log(
             langButtons.forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     const targetLang = this.getAttribute('data-lang');
-
-                    // Changer la langue
                     select.value = targetLang;
                     select.dispatchEvent(new Event('change'));
 
-                    // Activer visuellement
                     langButtons.forEach(function (b) {
                         b.classList.remove('active');
                     });
@@ -515,7 +379,6 @@ console.log(
         }
     }
 
-    // Démarrer après chargement
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(initCustomButtons, 1000);

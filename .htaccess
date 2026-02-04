@@ -5,6 +5,9 @@
 # Activer le moteur de réécriture
 RewriteEngine On
 
+# Rediriger la racine vers intro.html
+RewriteRule ^$ intro.html [L]
+
 # Page d'erreur 404 personnalisée
 ErrorDocument 404 /404.html
 

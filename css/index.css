@@ -2762,3 +2762,66 @@ body {
         margin: 10px 0;
     }
 }
+
+/* ========================================
+   CORRECTION LIENS HERO - VISIBILITÉ
+   ======================================== */
+
+/* Liens dans le paragraphe hero-subtitle */
+.hero-subtitle a {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    text-decoration-color: rgba(255, 255, 255, 0.5) !important;
+    text-underline-offset: 3px !important;
+    transition: all 0.3s ease !important;
+}
+
+.hero-subtitle a:hover {
+    color: #60A5FA !important;
+    text-decoration-color: #60A5FA !important;
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5) !important;
+}
+
+/* Alternative : Si tu préfères en BLEU CLAIR */
+/*
+.hero-subtitle a {
+    color: #60A5FA !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    text-decoration-color: rgba(96, 165, 250, 0.5) !important;
+    text-underline-offset: 3px !important;
+    transition: all 0.3s ease !important;
+}
+
+.hero-subtitle a:hover {
+    color: #FFFFFF !important;
+    text-decoration-color: #FFFFFF !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+}
+*/
+
+/* Tous les autres liens dans le contenu sombre */
+.local-expertise a,
+.about a,
+.services a,
+.portfolio a,
+.testimonials a,
+.contact a {
+    color: #3B82F6 !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+    text-decoration-color: rgba(59, 130, 246, 0.3) !important;
+    text-underline-offset: 2px !important;
+    transition: all 0.3s ease !important;
+}
+
+.local-expertise a:hover,
+.about a:hover,
+.services a:hover,
+.portfolio a:hover,
+.testimonials a:hover,
+.contact a:hover {
+    color: #2563EB !important;
+    text-decoration-color: #2563EB !important;
+}
