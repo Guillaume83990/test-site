@@ -2825,3 +2825,55 @@ body {
     color: #2563EB !important;
     text-decoration-color: #2563EB !important;
 }
+
+/* ================================================
+   FIX FINAL BOUTONS BLANCS - Anti Google Translate
+   Coller à la FIN de index.css
+   ================================================ */
+
+/* SOLUTION RADICALE : tous les éléments cliquables = blanc */
+a.btn,
+button.btn,
+a.btn span,
+button.btn span,
+.btn,
+.btn span,
+.btn-primary,
+.btn-primary span,
+.btn-secondary,
+.btn-secondary span,
+.nav-cta,
+.nav-cta span,
+a.service-link-btn,
+.service-link-btn,
+.service-price-block>a,
+.service-footer a,
+a.complementary-cta,
+.complementary-cta,
+.submit-btn,
+.submit-btn span,
+.cookie-btn-accept,
+.back-to-top,
+.enter-button {
+    color: #FFFFFF !important;
+}
+
+/* SVG dans boutons */
+.btn svg,
+.nav-cta svg,
+.submit-btn svg,
+.btn svg path,
+.nav-cta svg path,
+.submit-btn svg path {
+    stroke: #FFFFFF !important;
+    fill: none !important;
+}
+
+/* ANTI Google Translate : neutraliser ses overrides */
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}

@@ -1,7 +1,6 @@
 // ================================================
 // GESTION DE LA BANNIÈRE COOKIES (RGPD)
 // ================================================
-
 document.addEventListener('DOMContentLoaded', function () {
 
     // Vérifier si l'utilisateur a déjà fait un choix
@@ -16,20 +15,20 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, 1000);
     } else if (cookieConsent === 'accepted') {
-        // Si accepté, activer Google Analytics (si vous l'utilisez)
+        // Si déjà accepté → charger Google Translate immédiatement
         enableAnalytics();
+        loadGoogleTranslate();
     }
-
     // Bouton ACCEPTER
     const acceptBtn = document.getElementById('cookie-accept');
     if (acceptBtn) {
         acceptBtn.addEventListener('click', function () {
             // Enregistrer le consentement
             localStorage.setItem('cookieConsent', 'accepted');
-
             // Activer les cookies analytiques
             enableAnalytics();
-
+            // Charger Google Translate APRÈS consentement
+            loadGoogleTranslate();
             // Masquer la bannière
             hideBanner();
         });
@@ -41,48 +40,70 @@ document.addEventListener('DOMContentLoaded', function () {
         refuseBtn.addEventListener('click', function () {
             // Enregistrer le refus
             localStorage.setItem('cookieConsent', 'refused');
-
-            // Masquer la bannière
+            // Masquer la bannière SANS charger Google Translate
             hideBanner();
         });
     }
 });
 
-// Fonction pour masquer la bannière
+// ================================================
+// FONCTION GOOGLE TRANSLATE - RGPD CONFORME
+// Chargé UNIQUEMENT après consentement
+// ================================================
+function loadGoogleTranslate() {
+    // Éviter de charger 2 fois
+    if (document.getElementById('google-translate-script')) return;
+
+    // Initialisation Google Translate
+    window.googleTranslateElementInit = function () {
+        new google.translate.TranslateElement(
+            { pageLanguage: 'fr', includedLanguages: 'en' },
+            'google_translate_element'
+        );
+    };
+
+    // Charger le script Google Translate dynamiquement
+    const script = document.createElement('script');
+    script.id = 'google-translate-script';
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    document.head.appendChild(script);
+}
+
+// ================================================
+// FONCTION MASQUER BANNIÈRE
+// ================================================
 function hideBanner() {
     const banner = document.querySelector('.cookie-banner');
     if (banner) {
         banner.classList.remove('show');
-
-        // Supprimer complètement après l'animation
         setTimeout(() => {
             banner.style.display = 'none';
         }, 400);
     }
 }
 
-// Fonction pour activer Google Analytics (à compléter si vous l'utilisez)
+// ================================================
+// FONCTION ANALYTICS (optionnel)
+// ================================================
 function enableAnalytics() {
-    // Si vous utilisez Google Analytics, décommentez et complétez :
-
+    // Google Analytics 4 - décommenter si vous l'utilisez :
     /*
-    // Google Analytics 4
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-VOTRE-ID-GA4');
-    
-    // Charger le script GA4
     const script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VOTRE-ID-GA4';
     document.head.appendChild(script);
     */
-
     console.log('Cookies analytiques activés');
 }
 
-// Fonction pour réinitialiser le choix (utile pour tester)
+// ================================================
+// FONCTION RESET (pour tests)
+// ================================================
 function resetCookieConsent() {
     localStorage.removeItem('cookieConsent');
     location.reload();

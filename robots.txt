@@ -1,16 +1,5 @@
 # robots.txt - Sud Web Project
-# https://www.sudwebproject.com
-
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://www.sudwebproject.com/sitemap.xml
-
-# Pages à ne pas indexer
-Disallow: /404.html
-
-# Autoriser TOUT le reste (CSS, JS, images)
-Allow: /css/
-Allow: /js/
-Allow: /assets/
