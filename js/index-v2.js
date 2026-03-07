@@ -1,6 +1,7 @@
 /* ================================================
-   INDEX.JS - JavaScript complet (tout-en-un)
+   INDEX-V2.JS - JavaScript complet (tout-en-un)
    Navigation + Animations + Particules
+   Fonctionne sur toutes les pages du site
    ================================================ */
 
 // ============= NAVIGATION MOBILE ============= //
@@ -62,97 +63,102 @@ window.addEventListener('scroll', () => {
 
 function handleNavScroll() {
     const currentScroll = window.pageYOffset;
-    if (currentScroll > 100) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
+    if (nav) {
+        if (currentScroll > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
     }
     lastScroll = currentScroll;
 }
 
 
 // ============= PARTICULES BACKGROUND ============= //
+// Uniquement sur les pages qui ont le canvas#particles-bg (index.html)
 const canvas = document.getElementById('particles-bg');
-const ctx = canvas.getContext('2d');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
 
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-});
-
-class BackgroundParticle {
-    constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.2;
-    }
-
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > width) this.speedX *= -1;
-        if (this.y < 0 || this.y > height) this.speedY *= -1;
-    }
-
-    draw() {
-        ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
-        gradient.addColorStop(0, `rgba(59, 130, 246, ${this.opacity * 0.3})`);
-        gradient.addColorStop(1, 'transparent');
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-const particlesArray = [];
-const particleCount = 50;
-
-for (let i = 0; i < particleCount; i++) {
-    particlesArray.push(new BackgroundParticle());
-}
-
-function animateParticles() {
-    ctx.clearRect(0, 0, width, height);
-
-    particlesArray.forEach(particle => {
-        particle.update();
-        particle.draw();
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
     });
 
-    for (let i = 0; i < particlesArray.length; i++) {
-        for (let j = i + 1; j < particlesArray.length; j++) {
-            const dx = particlesArray[i].x - particlesArray[j].x;
-            const dy = particlesArray[i].y - particlesArray[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+    class BackgroundParticle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.5;
+            this.opacity = Math.random() * 0.5 + 0.2;
+        }
 
-            if (distance < 150) {
-                const opacity = (150 - distance) / 150 * 0.15;
-                ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
-                ctx.lineWidth = 0.5;
-                ctx.beginPath();
-                ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                ctx.stroke();
-            }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x < 0 || this.x > width) this.speedX *= -1;
+            if (this.y < 0 || this.y > height) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+
+            const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
+            gradient.addColorStop(0, `rgba(59, 130, 246, ${this.opacity * 0.3})`);
+            gradient.addColorStop(1, 'transparent');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+            ctx.fill();
         }
     }
 
-    requestAnimationFrame(animateParticles);
-}
+    const particlesArray = [];
+    const particleCount = 50;
 
-animateParticles();
+    for (let i = 0; i < particleCount; i++) {
+        particlesArray.push(new BackgroundParticle());
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+
+        particlesArray.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        for (let i = 0; i < particlesArray.length; i++) {
+            for (let j = i + 1; j < particlesArray.length; j++) {
+                const dx = particlesArray[i].x - particlesArray[j].x;
+                const dy = particlesArray[i].y - particlesArray[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 150) {
+                    const opacity = (150 - distance) / 150 * 0.15;
+                    ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+}
 
 
 // ============= ANIMATIONS AU SCROLL ============= //
@@ -277,6 +283,7 @@ window.addEventListener('scroll', () => {
 });
 
 function handleBackToTop() {
+    if (!backToTopBtn) return;
     const scrollPosition = window.pageYOffset;
     if (scrollPosition > 400) {
         backToTopBtn.classList.add('visible');
@@ -302,11 +309,9 @@ if (currentYearSpan) {
 }
 
 
-// ============= CURSOR GLOW (optionnel) ============= //
-let cursorGlow = null;
-
+// ============= CURSOR GLOW (desktop uniquement) ============= //
 if (window.innerWidth > 1024) {
-    cursorGlow = document.createElement('div');
+    const cursorGlow = document.createElement('div');
     cursorGlow.style.cssText = `
         position: fixed;
         width: 300px;
@@ -322,17 +327,13 @@ if (window.innerWidth > 1024) {
     document.body.appendChild(cursorGlow);
 
     document.addEventListener('mousemove', (e) => {
-        if (cursorGlow) {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-            cursorGlow.style.opacity = '1';
-        }
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+        cursorGlow.style.opacity = '1';
     });
 
     document.addEventListener('mouseleave', () => {
-        if (cursorGlow) {
-            cursorGlow.style.opacity = '0';
-        }
+        cursorGlow.style.opacity = '0';
     });
 }
 
@@ -342,7 +343,12 @@ console.log('%c🌴 Sud Web Project - Saint-Tropez', 'color: #3B82F6; font-size:
 console.log('%c✨ Animations luxe activées', 'color: #60A5FA; font-size: 14px;');
 console.log('%c📧 contact@sudwebproject.com', 'color: #10B981; font-size: 14px;');
 
-// ============= GOOGLE TRANSLATE - BOUTONS CUSTOM ============= //
+
+// ============= GOOGLE TRANSLATE - TOUTES LES PAGES ============= //
+// NOTE : googleTranslateElementInit() est définie en INLINE sur chaque page HTML
+// (juste avant le script Google Translate) pour éviter le conflit avec defer.
+
+// Boutons drapeaux 🇫🇷 / 🇬🇧 — branchés sur le widget Google une fois chargé
 (function () {
     'use strict';
 
@@ -351,7 +357,6 @@ console.log('%c📧 contact@sudwebproject.com', 'color: #10B981; font-size: 14px
 
     function initCustomButtons() {
         attempts++;
-
         const select = document.querySelector('.goog-te-combo');
 
         if (select) {
@@ -362,20 +367,51 @@ console.log('%c📧 contact@sudwebproject.com', 'color: #10B981; font-size: 14px
             langButtons.forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     const targetLang = this.getAttribute('data-lang');
-                    select.value = targetLang;
-                    select.dispatchEvent(new Event('change'));
 
-                    langButtons.forEach(function (b) {
-                        b.classList.remove('active');
-                    });
+                    // Mettre à jour le bouton actif
+                    langButtons.forEach(function (b) { b.classList.remove('active'); });
                     this.classList.add('active');
 
-                    console.log('🌍 Langue:', targetLang);
+                    // Changer la langue — méthode directe sans dispatchEvent
+                    // (dispatchEvent bubbles=true cause une récursion infinie dans element.js)
+                    if (targetLang === 'fr') {
+                        // Retour au français = restaurer la page originale
+                        const restoreLink = document.querySelector('.goog-te-menu-value');
+                        if (window.location.href.indexOf('googtrans') !== -1) {
+                            const url = window.location.href
+                                .replace(/[?&]googtrans=[^&]*/g, '')
+                                .replace(/[?&]$/g, '');
+                            window.location.href = url;
+                        } else {
+                            select.value = 'fr';
+                            // Simuler le changement via le select natif sans bubbles
+                            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                                window.HTMLSelectElement.prototype, 'value').set;
+                            nativeInputValueSetter.call(select, 'fr');
+                            select.dispatchEvent(new Event('change'));
+                        }
+                    } else {
+                        // Changer vers anglais via le select natif sans bubbles
+                        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                            window.HTMLSelectElement.prototype, 'value').set;
+                        nativeInputValueSetter.call(select, targetLang);
+                        select.dispatchEvent(new Event('change'));
+                    }
+
+                    console.log('🌍 Langue changée :', targetLang);
                 });
+            });
+
+            // Synchroniser le bouton actif avec la langue actuelle
+            const currentLang = select.value || 'fr';
+            langButtons.forEach(function (btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
             });
 
         } else if (attempts < maxAttempts) {
             setTimeout(initCustomButtons, 500);
+        } else {
+            console.warn('⚠️ Widget Google Translate non trouvé après', maxAttempts, 'tentatives.');
         }
     }
 

@@ -2877,3 +2877,455 @@ a.complementary-cta,
 body {
     top: 0 !important;
 }
+
+/* ================================================
+   ZONE D'INTERVENTION — À coller à la FIN de index.css
+   ================================================ */
+
+.zone-intervention {
+    background: #f8fafc;
+    padding: 5rem 0;
+    border-top: 1px solid #e2e8f0;
+    position: relative;
+    z-index: 1;
+}
+
+/* La section est sur fond blanc : overrides des couleurs dark du site */
+.zone-intervention .section-badge {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.25);
+    color: #2563eb;
+}
+
+.zone-intervention .section-header h2 {
+    color: #1e293b !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: #1e293b !important;
+    background: none !important;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+
+.zone-intervention .section-intro {
+    color: #475569 !important;
+}
+
+/* ===== GRILLE 3 x 2 ===== */
+.intervention-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin: 2.5rem 0 2rem;
+}
+
+/* ===== CARTE DE BASE ===== */
+.intervention-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.intervention-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: transparent;
+    transition: background 0.25s;
+}
+
+.intervention-card:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.1);
+    transform: translateY(-3px);
+}
+
+.intervention-card:hover::before {
+    background: #3b82f6;
+}
+
+/* ===== SAINT-TROPEZ — bleue ===== */
+.intervention-card--active {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #93c5fd;
+}
+
+.intervention-card--active::before {
+    background: #2563eb;
+}
+
+/* ===== VAR — verte ===== */
+.intervention-card--var {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-color: #86efac;
+}
+
+.intervention-card--var::before {
+    background: #16a34a;
+}
+
+.intervention-card--var:hover {
+    border-color: #4ade80;
+    box-shadow: 0 8px 30px rgba(22, 163, 74, 0.1);
+}
+
+/* ===== CONTENU DES CARTES ===== */
+.intervention-card-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.intervention-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b !important;
+    margin: 0;
+    font-family: var(--font-body);
+}
+
+.intervention-card p {
+    font-size: 0.85rem;
+    color: #64748b !important;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+}
+
+/* ===== TAGS ===== */
+.intervention-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+.intervention-tag--link {
+    background: #f1f5f9;
+    color: #3b82f6;
+}
+
+.intervention-card--var .intervention-tag--link {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+/* ===== TEXTE SEO DU BAS ===== */
+.intervention-seo-text {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.intervention-seo-text p {
+    color: #475569;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+.intervention-seo-text strong {
+    color: #1e293b;
+}
+
+.intervention-seo-text a {
+    color: #2563eb !important;
+    text-decoration: none !important;
+}
+
+.intervention-seo-text a:hover {
+    text-decoration: underline !important;
+}
+
+/* Le bouton "Voir toutes les zones" sur fond blanc */
+.zone-intervention .btn-secondary {
+    background: rgba(59, 130, 246, 0.08);
+    color: #2563eb !important;
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.zone-intervention .btn-secondary:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: #3b82f6;
+}
+
+.zone-intervention .btn-secondary span,
+.zone-intervention .btn-secondary svg {
+    color: #2563eb !important;
+}
+
+.zone-intervention .btn-secondary svg path {
+    stroke: #2563eb !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .intervention-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .intervention-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .zone-intervention {
+        padding: 3rem 0;
+    }
+}
+
+/* ================================================
+   ZONE D'INTERVENTION — Section SEO locale
+   ================================================ */
+
+.zone-intervention {
+    background: #f8fafc;
+    padding: 5rem 0;
+    border-top: 1px solid #e2e8f0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Overrides nécessaires : cette section est sur fond blanc */
+.zone-intervention .section-badge {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.25);
+    color: #2563eb;
+}
+
+.zone-intervention .section-header h2 {
+    color: #1e293b !important;
+    text-shadow: none;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+
+.zone-intervention .section-intro {
+    color: #475569;
+}
+
+/* Grille 3x2 */
+.intervention-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin: 2.5rem 0 2rem;
+}
+
+/* Carte de base */
+.intervention-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.intervention-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: transparent;
+    transition: background 0.25s;
+}
+
+.intervention-card:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.1);
+    transform: translateY(-3px);
+}
+
+.intervention-card:hover::before {
+    background: #3b82f6;
+}
+
+/* Saint-Tropez — card active bleue */
+.intervention-card--active {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #93c5fd;
+}
+
+.intervention-card--active::before {
+    background: #2563eb;
+}
+
+/* Var — card verte */
+.intervention-card--var {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-color: #86efac;
+}
+
+.intervention-card--var::before {
+    background: #16a34a;
+}
+
+.intervention-card--var:hover {
+    border-color: #4ade80;
+    box-shadow: 0 8px 30px rgba(22, 163, 74, 0.1);
+}
+
+.intervention-card-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.intervention-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.intervention-card p {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+}
+
+.intervention-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+.intervention-tag--link {
+    background: #f1f5f9;
+    color: #3b82f6;
+}
+
+.intervention-card--var .intervention-tag--link {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+/* Texte SEO du bas */
+.intervention-seo-text {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.intervention-seo-text p {
+    color: #475569;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+.intervention-seo-text a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.intervention-seo-text a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive zone intervention */
+@media (max-width: 900px) {
+    .intervention-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .intervention-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .zone-intervention {
+        padding: 3rem 0;
+    }
+}
+
+/* ================================================
+   FOOTER — active-city (ville en cours = bleu)
+   ================================================ */
+
+.footer-cities a {
+    color: #94A3B8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-cities a:hover {
+    color: #60a5fa;
+}
+
+.footer-cities .active-city {
+    font-weight: 700 !important;
+    color: #60a5fa !important;
+}
+
+/* ================================================
+   MENU BURGER MOBILE — fond blanc cohérent
+   Même style que ville.css et var.css
+   ================================================ */
+@media (max-width: 768px) {
+
+    .nav-links.active,
+    #nav-menu.active {
+        background: #ffffff !important;
+        box-shadow: -4px 0 30px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .nav-links.active a,
+    #nav-menu.active a {
+        color: #1e3a8a !important;
+        font-weight: 600;
+    }
+
+    .nav-links.active a:hover,
+    #nav-menu.active a:hover {
+        color: #2563eb !important;
+    }
+
+    .nav-links.active li,
+    #nav-menu.active li {
+        border-bottom: 1px solid #f1f5f9 !important;
+    }
+
+    .translate-container {
+        display: flex !important;
+    }
+
+    .lang-btn {
+        font-size: 1.15rem;
+        width: 2rem;
+        height: 2rem;
+    }
+}
