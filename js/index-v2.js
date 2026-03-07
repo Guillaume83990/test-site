@@ -346,80 +346,66 @@ console.log('%c📧 contact@sudwebproject.com', 'color: #10B981; font-size: 14px
 
 // ============= GOOGLE TRANSLATE - TOUTES LES PAGES ============= //
 // NOTE : googleTranslateElementInit() est définie en INLINE sur chaque page HTML
-// (juste avant le script Google Translate) pour éviter le conflit avec defer.
 
-// Boutons drapeaux 🇫🇷 / 🇬🇧 — branchés sur le widget Google une fois chargé
 (function () {
     'use strict';
 
-    let attempts = 0;
-    const maxAttempts = 20;
+    var attempts = 0;
+    var maxAttempts = 30;
+    var buttonsReady = false;
 
     function initCustomButtons() {
+        if (buttonsReady) return;
         attempts++;
-        const select = document.querySelector('.goog-te-combo');
 
-        if (select) {
-            console.log('✅ Traduction prête !');
-
-            const langButtons = document.querySelectorAll('.lang-btn');
-
-            langButtons.forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    const targetLang = this.getAttribute('data-lang');
-
-                    // Mettre à jour le bouton actif
-                    langButtons.forEach(function (b) { b.classList.remove('active'); });
-                    this.classList.add('active');
-
-                    // Changer la langue — méthode directe sans dispatchEvent
-                    // (dispatchEvent bubbles=true cause une récursion infinie dans element.js)
-                    if (targetLang === 'fr') {
-                        // Retour au français = restaurer la page originale
-                        const restoreLink = document.querySelector('.goog-te-menu-value');
-                        if (window.location.href.indexOf('googtrans') !== -1) {
-                            const url = window.location.href
-                                .replace(/[?&]googtrans=[^&]*/g, '')
-                                .replace(/[?&]$/g, '');
-                            window.location.href = url;
-                        } else {
-                            select.value = 'fr';
-                            // Simuler le changement via le select natif sans bubbles
-                            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-                                window.HTMLSelectElement.prototype, 'value').set;
-                            nativeInputValueSetter.call(select, 'fr');
-                            select.dispatchEvent(new Event('change'));
-                        }
-                    } else {
-                        // Changer vers anglais via le select natif sans bubbles
-                        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-                            window.HTMLSelectElement.prototype, 'value').set;
-                        nativeInputValueSetter.call(select, targetLang);
-                        select.dispatchEvent(new Event('change'));
-                    }
-
-                    console.log('🌍 Langue changée :', targetLang);
-                });
-            });
-
-            // Synchroniser le bouton actif avec la langue actuelle
-            const currentLang = select.value || 'fr';
-            langButtons.forEach(function (btn) {
-                btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
-            });
-
-        } else if (attempts < maxAttempts) {
-            setTimeout(initCustomButtons, 500);
-        } else {
-            console.warn('⚠️ Widget Google Translate non trouvé après', maxAttempts, 'tentatives.');
+        // Vérifier que le widget Google est prêt
+        var combo = document.querySelector('.goog-te-combo');
+        if (!combo) {
+            if (attempts < maxAttempts) setTimeout(initCustomButtons, 300);
+            else console.warn('⚠️ Google Translate non trouvé.');
+            return;
         }
+
+        buttonsReady = true;
+        console.log('✅ Traduction prête !');
+
+        var langButtons = document.querySelectorAll('.lang-btn');
+        if (!langButtons.length) return;
+
+        langButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var targetLang = this.getAttribute('data-lang');
+
+                // Mettre à jour le bouton actif
+                langButtons.forEach(function (b) { b.classList.remove('active'); });
+                this.classList.add('active');
+
+                // Utiliser doGTranslate — méthode officielle Google, sans récursion
+                if (typeof window.doGTranslate === 'function') {
+                    if (targetLang === 'fr') {
+                        window.doGTranslate('fr|fr');
+                    } else {
+                        window.doGTranslate('fr|' + targetLang);
+                    }
+                    console.log('🌍 Langue :', targetLang);
+                } else {
+                    // Fallback : manipuler le select directement
+                    combo.value = targetLang;
+                    combo.dispatchEvent(new Event('change'));
+                }
+            });
+        });
+
+        // Sync bouton actif au chargement
+        var currentLang = combo.value || 'fr';
+        langButtons.forEach(function (btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
+        });
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(initCustomButtons, 1000);
-        });
+        document.addEventListener('DOMContentLoaded', function () { setTimeout(initCustomButtons, 800); });
     } else {
-        setTimeout(initCustomButtons, 1000);
+        setTimeout(initCustomButtons, 800);
     }
 })();
