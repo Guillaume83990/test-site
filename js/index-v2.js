@@ -345,67 +345,61 @@ console.log('%c📧 contact@sudwebproject.com', 'color: #10B981; font-size: 14px
 
 
 // ============= GOOGLE TRANSLATE - TOUTES LES PAGES ============= //
-// NOTE : googleTranslateElementInit() est définie en INLINE sur chaque page HTML
+// Méthode cookie : 100% fiable, zéro récursion, compatible tous hébergeurs
 
 (function () {
     'use strict';
 
-    var attempts = 0;
-    var maxAttempts = 30;
-    var buttonsReady = false;
+    function getCookieLang() {
+        var match = document.cookie.match(/googtrans=\/fr\/([a-z]+)/);
+        return match ? match[1] : 'fr';
+    }
 
-    function initCustomButtons() {
-        if (buttonsReady) return;
-        attempts++;
-
-        // Vérifier que le widget Google est prêt
-        var combo = document.querySelector('.goog-te-combo');
-        if (!combo) {
-            if (attempts < maxAttempts) setTimeout(initCustomButtons, 300);
-            else console.warn('⚠️ Google Translate non trouvé.');
-            return;
+    function setLang(targetLang) {
+        if (targetLang === 'fr') {
+            // Supprimer le cookie googtrans = retour au français
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
+        } else {
+            // Poser le cookie googtrans pour la langue cible
+            document.cookie = 'googtrans=/fr/' + targetLang + '; path=/;';
+            document.cookie = 'googtrans=/fr/' + targetLang + '; path=/; domain=' + window.location.hostname + ';';
         }
+        // Recharger la page — Google Translate lira le cookie automatiquement
+        window.location.reload();
+    }
 
-        buttonsReady = true;
-        console.log('✅ Traduction prête !');
-
+    function initButtons() {
         var langButtons = document.querySelectorAll('.lang-btn');
         if (!langButtons.length) return;
 
-        langButtons.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var targetLang = this.getAttribute('data-lang');
-
-                // Mettre à jour le bouton actif
-                langButtons.forEach(function (b) { b.classList.remove('active'); });
-                this.classList.add('active');
-
-                // Utiliser doGTranslate — méthode officielle Google, sans récursion
-                if (typeof window.doGTranslate === 'function') {
-                    if (targetLang === 'fr') {
-                        window.doGTranslate('fr|fr');
-                    } else {
-                        window.doGTranslate('fr|' + targetLang);
-                    }
-                    console.log('🌍 Langue :', targetLang);
-                } else {
-                    // Fallback : manipuler le select directement
-                    combo.value = targetLang;
-                    combo.dispatchEvent(new Event('change'));
-                }
-            });
-        });
-
-        // Sync bouton actif au chargement
-        var currentLang = combo.value || 'fr';
+        // Marquer le bouton actif selon le cookie actuel
+        var currentLang = getCookieLang();
         langButtons.forEach(function (btn) {
             btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
         });
+
+        // Brancher les clics
+        langButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var targetLang = this.getAttribute('data-lang');
+                if (targetLang === currentLang) return; // déjà dans cette langue
+
+                langButtons.forEach(function (b) { b.classList.remove('active'); });
+                this.classList.add('active');
+
+                setLang(targetLang);
+            });
+        });
+
+        console.log('✅ Traduction prête ! (lang: ' + currentLang + ')');
     }
 
+    // Lancer dès que le DOM est prêt — pas besoin d'attendre Google
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () { setTimeout(initCustomButtons, 800); });
+        document.addEventListener('DOMContentLoaded', initButtons);
     } else {
-        setTimeout(initCustomButtons, 800);
+        initButtons();
     }
+
 })();
