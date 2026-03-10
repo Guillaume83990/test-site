@@ -1,218 +1,254 @@
-/* ================================================
-   PORTFOLIO DÉMO (SCREENSHOTS)
-   ================================================ */
+/* ============================================================
+   PORTFOLIO GRID — Grille de projets par secteur
+============================================================ */
 
-.portfolio-demo {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.demo-intro {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.demo-intro h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 1rem;
-}
-
-.demo-subtitle {
-    font-size: 1.2rem;
-    color: #60A5FA;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-}
-
-.demo-description {
-    font-size: 1.1rem;
-    color: #CBD5E1;
-    line-height: 1.8;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Grille des screenshots */
-.portfolio-screenshots {
+/* --- Grille ------------------------------------------------ */
+.portfolio-grid {
     display: grid;
-    gap: 3rem;
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 2.5rem;
 }
 
-.screenshot-card {
-    background: rgba(30, 41, 59, 0.6);
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(59, 130, 246, 0.2);
-    border-radius: 20px;
+/* --- Card -------------------------------------------------- */
+.portfolio-card {
+    background: var(--slate-800, #1e293b);
+    border: 1px solid var(--slate-700, #334155);
+    border-radius: 12px;
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-.screenshot-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+.portfolio-card:hover {
+    border-color: var(--blue-500, #3b82f6);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.12);
 }
 
-.screenshot-image {
-    width: 100%;
+.portfolio-card--coming {
+    opacity: 0.7;
+}
+
+.portfolio-card--coming:hover {
+    border-color: var(--slate-600, #475569);
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- Image zone -------------------------------------------- */
+.portfolio-card-image {
+    position: relative;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: #1E293B;
+    background: var(--slate-900, #0f172a);
 }
 
-.screenshot-image img {
+.portfolio-card-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
 }
 
-.screenshot-card:hover .screenshot-image img {
-    transform: scale(1.05);
+.portfolio-card:hover .portfolio-card-image img {
+    transform: scale(1.04);
 }
 
-.screenshot-info {
-    padding: 2rem;
+/* Placeholder */
+.portfolio-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--slate-900, #0f172a);
 }
 
-.screenshot-info h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: white;
-    margin-bottom: 1.5rem;
+.portfolio-card-placeholder span {
+    font-size: 2.5rem;
 }
 
-.features-list {
+.portfolio-card-placeholder p {
+    font-size: 0.8rem;
+    color: var(--slate-500, #64748b);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Overlay hover */
+.portfolio-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.portfolio-card:hover .portfolio-card-overlay {
+    opacity: 1;
+}
+
+.portfolio-btn-demo {
+    background: var(--blue-500, #3b82f6);
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+    font-family: inherit;
+    line-height: 1;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.portfolio-btn-demo:hover {
+    background: var(--blue-600, #2563eb);
+    transform: scale(1.04);
+}
+
+/* Badge offre */
+.portfolio-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.portfolio-badge--vitrine {
+    background: rgba(59, 130, 246, 0.85);
+    color: #fff;
+}
+
+.portfolio-badge--premium {
+    background: rgba(245, 158, 11, 0.9);
+    color: #fff;
+}
+
+/* --- Corps card -------------------------------------------- */
+.portfolio-card-body {
+    padding: 22px 24px 24px;
+}
+
+.portfolio-card-body h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--slate-100, #f1f5f9);
+    margin-bottom: 4px;
+}
+
+.portfolio-card-client {
+    font-size: 0.78rem;
+    color: var(--slate-400, #94a3b8);
+    margin-bottom: 10px;
+}
+
+.portfolio-card-client em {
+    color: var(--slate-500, #64748b);
+}
+
+.portfolio-card-desc {
+    font-size: 0.85rem;
+    color: var(--slate-400, #94a3b8);
+    line-height: 1.65;
+    margin-bottom: 14px;
+}
+
+/* Tags techno */
+.portfolio-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 18px;
 }
 
-.features-list li {
-    color: #CBD5E1;
-    padding: 0.75rem 0;
-    font-size: 1rem;
-    line-height: 1.6;
-    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+.portfolio-card-tags li {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border: 1px solid var(--slate-600, #475569);
+    color: var(--slate-400, #94a3b8);
+    border-radius: 3px;
 }
 
-.features-list li:last-child {
-    border-bottom: none;
+/* Footer card */
+.portfolio-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--slate-700, #334155);
+    padding-top: 14px;
 }
 
-/* CTA */
-.demo-cta {
-    text-align: center;
-    padding: 3rem;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
-    border: 2px solid rgba(59, 130, 246, 0.3);
-    border-radius: 20px;
+.portfolio-price {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--blue-400, #60a5fa);
 }
 
-.cta-text {
-    font-size: 1.3rem;
-    color: white;
-    margin-bottom: 2rem;
+.portfolio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.82rem;
     font-weight: 600;
+    color: var(--blue-400, #60a5fa);
+    text-decoration: none;
+    transition: color 0.2s, gap 0.2s;
 }
 
-/* ================================================
-   IMAGE 3 - EFFET SMARTPHONE
-   ================================================ */
-
-/* Réduire et centrer l'image responsive avec effet smartphone */
-.screenshot-card:nth-child(3) .screenshot-image {
-    max-width: 375px;
-    margin: 0 auto;
-    padding: 15px;
-    background: #1a1a1a;
-    border-radius: 35px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    position: relative;
+.portfolio-link:hover {
+    color: var(--blue-300, #93c5fd);
+    gap: 8px;
 }
 
-/* Encoche du smartphone en haut */
-.screenshot-card:nth-child(3) .screenshot-image::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 5px;
-    background: #333;
-    border-radius: 10px;
-    z-index: 10;
+.portfolio-coming {
+    font-size: 0.72rem;
+    color: var(--slate-500, #64748b);
+    font-style: italic;
 }
 
-/* Arrondir l'image */
-.screenshot-card:nth-child(3) .screenshot-image img {
-    border-radius: 20px;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+/* --- Responsive -------------------------------------------- */
+@media (max-width: 900px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* Ajuster le hover pour la carte 3 */
-.screenshot-card:nth-child(3):hover .screenshot-image {
-    transform: translateY(-5px);
+/* --- CTA sous portfolio ------------------------------------ */
+.demo-cta {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem 0;
 }
 
-/* Désactiver le zoom au hover sur l'image 3 pour garder l'effet smartphone */
-.screenshot-card:nth-child(3):hover .screenshot-image img {
-    transform: scale(1);
+.demo-cta .cta-text {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 1.1rem;
+    color: var(--slate-200, #e2e8f0);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
 
-/* ================================================
-   RESPONSIVE
-   ================================================ */
-
-@media (max-width: 768px) {
-    .demo-intro h3 {
-        font-size: 2rem;
-    }
-
-    .demo-subtitle {
-        font-size: 1rem;
-    }
-
-    .demo-description {
-        font-size: 1rem;
-    }
-
-    .portfolio-screenshots {
-        gap: 2rem;
-    }
-
-    .screenshot-info {
-        padding: 1.5rem;
-    }
-
-    .screenshot-info h4 {
-        font-size: 1.25rem;
-    }
-
-    .features-list li {
-        font-size: 0.95rem;
-        padding: 0.5rem 0;
-    }
-
-    .demo-cta {
-        padding: 2rem 1.5rem;
-    }
-
-    .cta-text {
-        font-size: 1.1rem;
-    }
-
-    /* Image 3 responsive mobile */
-    .screenshot-card:nth-child(3) .screenshot-image {
-        max-width: 320px;
-        padding: 12px;
-    }
-
-    .screenshot-card:nth-child(3) .screenshot-image::before {
-        width: 80px;
-        height: 4px;
-    }
+.demo-cta .cta-text strong {
+    color: #fff;
 }
